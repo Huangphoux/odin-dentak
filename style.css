@@ -17,7 +17,6 @@ body {
 
     /* justify-content: center; */
     align-items: center;
-
     margin: 0;
     padding: 0;
 
@@ -25,31 +24,28 @@ body {
     min-height: 100vh;
 }
 
-h1 {
-    text-align: center;
-    margin: 20px 0px 0px;
+.calculator {
+    display: flex;
+    flex-direction: column;
+
+    /* justify-content: center; */
+    align-items: center;
+
+    background-color: rgb(50, 174, 98);
+
+    width: 500px;
+    height: 400px;
+}
+
+.display {
+    background-color: rgb(183, 47, 47);
+
+    width: inherit;
+    height: 20%;
 }
 
 button {
     padding: 10px 20px;
-    margin: 20px 0px;
     border: none;
-    border-radius: 20px;
-
-    background-color: cornflowerblue;
-    color: black;
-
-}
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-
-    justify-content: center;
-    align-items: center;
-
-    width: 320px;
-    height: 320px;
-
-    outline: 5px solid white;
+    border-radius: 50%;
 }

@@ -10,3 +10,35 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
+
+function operate(operation, a, b) {
+    switch (operation) {
+        case "+":
+            return add(a, b);
+            break;
+        case "-":
+            return subtract(a, b);
+            break;
+        case "*":
+            return multiply(a, b);
+            break;
+        case "/":
+            return divide(a, b);
+            break;
+
+        default:
+            break;
+    }
+}
+
+let firstNum = 0;
+let operation;
+let secondNum = 0;
+
+const digits = document.querySelector(".digits");
+
+for (let number = 0; number < 10; number++) {
+    let digit = document.createElement("button");
+    digit.textContent = number;
+    digits.appendChild(digit);
+}
