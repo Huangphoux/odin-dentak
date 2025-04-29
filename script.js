@@ -39,6 +39,7 @@ const digits = document.querySelector(".digits");
 
 for (let number = 0; number < 10; number++) {
     let digit = document.createElement("button");
+    digit.setAttribute("class", "smallButton");
     digit.textContent = number;
     digits.appendChild(digit);
 }
