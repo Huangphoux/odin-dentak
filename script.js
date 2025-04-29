@@ -51,9 +51,20 @@ function clearDisplay() {
     display.textContent = "";
 }
 
+let isNewOperaration = true;
+
 const digitBtns = document.querySelectorAll(".digits > .smallButton");
 digitBtns.forEach((button) => {
     button.addEventListener("click", () => {
+        if (display.textContent.includes("funny")) {
+            display.textContent = "";
+        }
+
+        if (isNewOperaration == false) {
+            display.textContent = "";
+            isNewOperaration = true;
+        }
+
         display.textContent += button.textContent;
     });
 });
@@ -64,14 +75,24 @@ clearBtn.addEventListener("click", clearDisplay);
 const operatorBtns = document.querySelectorAll(".operators > .smallButton");
 operatorBtns.forEach((button) => {
     button.addEventListener("click", () => {
-        firstNumber = +display.textContent;
-        operation = button.textContent;
-        clearDisplay();
+        if (display.textContent !== "") {
+            firstNumber = +display.textContent;
+            operation = button.textContent;
+            clearDisplay();
+        }
     });
 });
 
 const equalBtn = document.querySelector(".equal");
 equalBtn.addEventListener("click", () => {
     secondNumber = +display.textContent;
-    display.textContent = operate(operation, firstNumber, secondNumber);
+
+    if (operation === "/" && secondNumber === "0") {
+        display.textContent = "You're not funny.";
+    } else {
+        display.textContent = operate(operation, firstNumber, secondNumber);
+    }
+
+    console.log([firstNumber, operation, secondNumber]);
+    isNewOperaration = false;
 });
