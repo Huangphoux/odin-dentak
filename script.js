@@ -43,3 +43,10 @@ for (let number = 0; number < 10; number++) {
     digit.textContent = number;
     digits.appendChild(digit);
 }
+
+const digitButton = document.querySelectorAll(".digits > .smallButton");
+digitButton.forEach((button) => {
+    button.addEventListener("click", () => {
+        alert(button.textContent);
+    });
+});
