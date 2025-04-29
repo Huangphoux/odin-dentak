@@ -43,7 +43,7 @@ h2 {
 }
 
 .display {
-    background-color: green;
+    /* background-color: green; */
 
     width: inherit;
     height: 20%;
