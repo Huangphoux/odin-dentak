@@ -36,6 +36,8 @@ let operation;
 let secondNum = 0;
 
 const digits = document.querySelector(".digits");
+const display = document.querySelector(".display");
+let displayContent;
 
 for (let number = 0; number < 10; number++) {
     let digit = document.createElement("button");
@@ -47,6 +49,14 @@ for (let number = 0; number < 10; number++) {
 const digitButton = document.querySelectorAll(".digits > .smallButton");
 digitButton.forEach((button) => {
     button.addEventListener("click", () => {
-        alert(button.textContent);
+        display.textContent += button.textContent;
+        displayContent = +display.textContent;
+        // console.log(displayContent + " " + typeof displayContent);
     });
+});
+
+const clearButton = document.querySelector(".clear");
+clearButton.addEventListener("click", () => {
+    display.textContent = "";
+    displayContent = "";
 });
