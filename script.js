@@ -31,32 +31,48 @@ function operate(operation, a, b) {
     }
 }
 
-let firstNum = 0;
+let firstNumber = 0;
 let operation;
-let secondNum = 0;
+let secondNumber = 0;
 
-const digits = document.querySelector(".digits");
-const display = document.querySelector(".display");
-let displayContent;
+const digitsContainer = document.querySelector(".digits");
 
+// add digit buttons programatically
 for (let number = 0; number < 10; number++) {
     let digit = document.createElement("button");
     digit.setAttribute("class", "smallButton");
     digit.textContent = number;
-    digits.appendChild(digit);
+    digitsContainer.appendChild(digit);
 }
+
+const display = document.querySelector(".display");
 
 const digitButton = document.querySelectorAll(".digits > .smallButton");
 digitButton.forEach((button) => {
     button.addEventListener("click", () => {
         display.textContent += button.textContent;
-        displayContent = +display.textContent;
         // console.log(displayContent + " " + typeof displayContent);
     });
 });
 
-const clearButton = document.querySelector(".clear");
-clearButton.addEventListener("click", () => {
+function clearDisplay() {
     display.textContent = "";
-    displayContent = "";
+}
+
+const clearButton = document.querySelector(".clear");
+clearButton.addEventListener("click", clearDisplay);
+
+const operators = document.querySelectorAll(".operators > .smallButton");
+operators.forEach((button) => {
+    button.addEventListener("click", () => {
+        firstNumber = +display.textContent;
+        clearDisplay();
+        operation = button.textContent;
+    });
+});
+
+const equal = document.querySelector(".equal");
+equal.addEventListener("click", () => {
+    secondNumber = +display.textContent;
+    display.textContent = operate(operation, firstNumber, secondNumber);
 });
