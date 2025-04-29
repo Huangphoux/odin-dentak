@@ -8,7 +8,7 @@ function multiply(a, b) {
     return a * b;
 }
 function divide(a, b) {
-    return a / b;
+    return +(a / b).toFixed(2);
 }
 
 function operate(operation, a, b) {
@@ -47,32 +47,31 @@ for (let number = 0; number < 10; number++) {
 
 const display = document.querySelector(".display");
 
-const digitButton = document.querySelectorAll(".digits > .smallButton");
-digitButton.forEach((button) => {
-    button.addEventListener("click", () => {
-        display.textContent += button.textContent;
-        // console.log(displayContent + " " + typeof displayContent);
-    });
-});
-
 function clearDisplay() {
     display.textContent = "";
 }
 
-const clearButton = document.querySelector(".clear");
-clearButton.addEventListener("click", clearDisplay);
-
-const operators = document.querySelectorAll(".operators > .smallButton");
-operators.forEach((button) => {
+const digitBtns = document.querySelectorAll(".digits > .smallButton");
+digitBtns.forEach((button) => {
     button.addEventListener("click", () => {
-        firstNumber = +display.textContent;
-        clearDisplay();
-        operation = button.textContent;
+        display.textContent += button.textContent;
     });
 });
 
-const equal = document.querySelector(".equal");
-equal.addEventListener("click", () => {
+const clearBtn = document.querySelector(".clear");
+clearBtn.addEventListener("click", clearDisplay);
+
+const operatorBtns = document.querySelectorAll(".operators > .smallButton");
+operatorBtns.forEach((button) => {
+    button.addEventListener("click", () => {
+        firstNumber = +display.textContent;
+        operation = button.textContent;
+        clearDisplay();
+    });
+});
+
+const equalBtn = document.querySelector(".equal");
+equalBtn.addEventListener("click", () => {
     secondNumber = +display.textContent;
     display.textContent = operate(operation, firstNumber, secondNumber);
 });
