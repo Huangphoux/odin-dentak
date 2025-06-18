@@ -36,7 +36,6 @@ let operation;
 let secondNumber = 0;
 
 const digitsContainer = document.querySelector(".digits");
-
 // add digit buttons programatically
 for (let number = 0; number < 10; number++) {
     let digit = document.createElement("button");
@@ -50,9 +49,10 @@ const display = document.querySelector(".display");
 function clearDisplay() {
     display.textContent = "";
 }
+const clearBtn = document.querySelector(".clear");
+clearBtn.addEventListener("click", clearDisplay);
 
-let isNewOperaration = true;
-
+let doneCalculate = false;
 const digitBtns = document.querySelectorAll(".digits > .smallButton");
 digitBtns.forEach((button) => {
     button.addEventListener("click", () => {
@@ -60,17 +60,14 @@ digitBtns.forEach((button) => {
             display.textContent = "";
         }
 
-        if (isNewOperaration == false) {
+        if (doneCalculate == true) {
             display.textContent = "";
-            isNewOperaration = true;
+            doneCalculate = false;
         }
 
         display.textContent += button.textContent;
     });
 });
-
-const clearBtn = document.querySelector(".clear");
-clearBtn.addEventListener("click", clearDisplay);
 
 const operatorBtns = document.querySelectorAll(".operators > .smallButton");
 operatorBtns.forEach((button) => {
@@ -83,16 +80,23 @@ operatorBtns.forEach((button) => {
     });
 });
 
+function reset() {
+    firstNumber = 0;
+    operation = null;
+    secondNumber = 0;
+}
+
 const equalBtn = document.querySelector(".equal");
 equalBtn.addEventListener("click", () => {
     secondNumber = +display.textContent;
 
-    if (operation === "/" && secondNumber === "0") {
+    if (operation === "/" && secondNumber === 0) {
         display.textContent = "You're not funny.";
     } else {
         display.textContent = operate(operation, firstNumber, secondNumber);
     }
 
     console.log([firstNumber, operation, secondNumber]);
-    isNewOperaration = false;
+    doneCalculate = true;
+    reset();
 });
